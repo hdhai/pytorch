@@ -469,7 +469,7 @@ c10::intrusive_ptr<Work> ProcessGroupWrapper::all_gather_single_coalesced(
   // use inconsistent shapes, see python implementation in distributed_c10d for
   // details.
   runCollectiveChecks(OpType::ALLGATHER_INTO_TENSOR_COALESCED, {});
-  return backend_->allgather_into_tensor_coalesced(outputs, inputs, opts);
+  return backend_->all_gather_single_coalesced(outputs, inputs, opts);
 }
 
 c10::intrusive_ptr<Work> ProcessGroupWrapper::gather(
