@@ -457,9 +457,7 @@ if not TEST_WITH_DEV_DBG_ASAN:
                 for r in range(self.world_size):
                     start = r * in_shapes[i][0]
                     end = (r + 1) * in_shapes[i][0]
-                    expected[start:end] = torch.ones(in_shapes[i], device=dev) * (
-                        r + 1
-                    )
+                    expected[start:end] = torch.ones(in_shapes[i], device=dev) * (r + 1)
                 self.assertTrue(torch.allclose(output, expected))
 
         @requires_accelerator_dist_backend(["nccl", "xccl"])
@@ -473,9 +471,7 @@ if not TEST_WITH_DEV_DBG_ASAN:
             """
             torch.cuda.set_device(self.rank)
             pg = self._create_wrapper_pg(with_new_group=True)
-            self._test_allgather_into_tensor_coalesced_op_mismatch(
-                pg, use_accel=True
-            )
+            self._test_allgather_into_tensor_coalesced_op_mismatch(pg, use_accel=True)
 
         @requires_nccl()
         @skip_if_lt_x_gpu(2)
